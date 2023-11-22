@@ -3,6 +3,7 @@
 ```
 DELIMITER //
 CREATE FUNCTION AddNumbers(num1 INT, num2 INT) RETURNS INT
+DETERMINISTIC
 BEGIN
    DECLARE result INT;
    SET result = num1 + num2;
