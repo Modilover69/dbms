@@ -1,12 +1,4 @@
-Q12. Write a function to square the number taken from user.
--- Example usage of the SquareNumber function
-DECLARE @InputNumber FLOAT;
-SET @InputNumber = 5; -- Replace 5 with your desired number
-DECLARE @SquaredNumber FLOAT;
-SET @SquaredNumber = dbo.SquareNumber(@InputNumber);
--- @SquaredNumber now contains the squared value of @InputNumber
-
-Q13. Write a program in PL/SQL to display a table based detail information for the employee of ID 149 from the employees/company table.
+** Q13. Write a program in PL/SQL to display a table based detail information for the employee of ID 149 from the employees/company table. ** 
 -- PL/SQL block to display employee details for ID 149
 DECLARE
     v_employee_id NUMBER := 149;
