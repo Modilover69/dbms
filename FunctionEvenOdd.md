@@ -1,17 +1,21 @@
 ```
-DELIMETER //
+DELIMITER $$
+
 CREATE FUNCTION IsEvenOrOdd(number INT) RETURNS VARCHAR(4)
+DETERMINISTIC
 BEGIN
-DECLARE result VARCHAR(10);
+
+DECLARE res VARCHAR(10);
 
 IF number % 2 = 0 THEN
-     SET result = 'Even';
+SET res = 'Even';
 ELSE
-     SET result = 'Odd';
+SET res = 'Odd';
 END IF;
-     RETURN result;
-END //
-DELIMETER;
+RETURN res;
+
+END $$
+DELIMETER ;
 ```
 Query OK, 0 rows affected (0.01 sec)
 
