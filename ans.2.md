@@ -1,5 +1,8 @@
-** Q13. Write a program in PL/SQL to display a table based detail information for the employee of ID 149 from the employees/company table. ** 
+Q13. Write a program in PL/SQL to display a table based detail information for the employee of ID 149 from the employees/company table.
+
 -- PL/SQL block to display employee details for ID 149
+
+```
 DECLARE
     v_employee_id NUMBER := 149;
     v_employee_name employees.company_name%TYPE;
@@ -23,12 +26,14 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
 END;
 /
+```
 
 
 Q14.Create a PL/SQL procedure that takes department as input from a user &amp; print
 the number of employees working in that department in the same variable?
 
 -- Create a PL/SQL procedure to count employees in a department
+```
 CREATE OR REPLACE PROCEDURE CountEmployeesInDepartment (
     p_department_name IN employees.department%TYPE,
     p_employee_count OUT NUMBER
@@ -54,12 +59,14 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
 END;
 /
+```
 
 Q15.Write a PL/SQL program using WHILE loop for calculating the average of
 the numbers entered by user. Stop the entry of numbers whenever the user enters
 the number 0.
 
 -- Create a PL/SQL program to calculate the average of user-entered numbers
+```
 SET SERVEROUTPUT ON;
 
 DECLARE
@@ -99,27 +106,11 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
 END;
 /
+```
 
-
-Q16.Write a PL/SQL code to find whether a given string is palindrome or not.
-
--- Create a PL/SQL function to check if a string is a palindrome
-CREATE OR REPLACE FUNCTION IsPalindrome(p_input_string VARCHAR2) RETURN BOOLEAN IS
-    v_reversed_string VARCHAR2(4000);
-BEGIN
-    -- Reverse the input string
-    SELECT REVERSE(p_input_string) INTO v_reversed_string FROM DUAL;
-
-    -- Check if the reversed string is equal to the original string
-    IF p_input_string = v_reversed_string THEN
-        RETURN TRUE; -- The string is a palindrome
-    ELSE
-        RETURN FALSE; -- The string is not a palindrome
-    END IF;
-END IsPalindrome;
-/
 
 -- Create a PL/SQL block to check if a string is a palindrome
+```
 SET SERVEROUTPUT ON;
 DECLARE
     v_input_string VARCHAR2(4000);
@@ -135,10 +126,12 @@ BEGIN
     END IF;
 END;
 /
-
+```
 
 Q17.Write PL/SQL program to find the sum of digits of a number.
+
 -- Create a PL/SQL program to find the sum of digits of a number
+```
 SET SERVEROUTPUT ON;
 
 DECLARE
@@ -167,10 +160,13 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
 END;
 /
+```
 
 
 Q18.Write a procedure to display the records from Manufacturing industry table.
+
 -- Create a PL/SQL procedure to display records from the Manufacturing Industry table
+```
 CREATE OR REPLACE PROCEDURE DisplayManufacturingRecords AS
 BEGIN
     -- Declare variables to store columns from the Manufacturing Industry table
@@ -199,16 +195,21 @@ BEGIN
     END;
 END;
 /
+```
 
+```
 -- Execute the procedure to display Manufacturing Industry records
 BEGIN
     DisplayManufacturingRecords;
 END;
 /
+```
 
 
 Q19.Write a procedure to display the records from Hospital table.
+
 -- Create a PL/SQL procedure to display records from the Hospital table
+```
 CREATE OR REPLACE PROCEDURE DisplayHospitalRecords AS
 BEGIN
     -- Declare variables to store columns from the Hospital table
@@ -234,17 +235,21 @@ BEGIN
     END;
 END;
 /
+```
 
+```
 -- Execute the procedure to display Hospital records
 BEGIN
     DisplayHospitalRecords;
 END;
 /
+```
 
 
 Q20.Write a PL/SQL program to display the employee IDs, names, job titles, hire
 dates, and salaries of all employees.
 -- Create a PL/SQL program to display employee details
+```
 SET SERVEROUTPUT ON;
 
 DECLARE
@@ -274,10 +279,11 @@ BEGIN
     END LOOP;
 END;
 /
-
+```
 
 Q21.Write a PL/SQL program to display the names of all countries.
 -- Create a PL/SQL program to display the names of all countries
+```
 SET SERVEROUTPUT ON;
 
 DECLARE
@@ -294,6 +300,7 @@ BEGIN
     END LOOP;
 END;
 /
+```
 
 
 Q22.Consider the Following schema
@@ -305,18 +312,23 @@ Dept (dno dname,dhod)
 should be insert in Dummy Table
 Ans 1-
 -- Update the salary of 'comp' department employees with a 10% raise
+```
 UPDATE Emp
 SET salary = salary * 1.10
 WHERE dno = 101 AND designation = 'comp';
+```
 
 Ans2-
 -- Display ename and designation of employees in department 101 with salary > 35000
+```
 SELECT ename, designation
 FROM Emp
 WHERE dno = 101 AND salary > 35000;
+```
 
 Ans3-
 -- Create a trigger to insert deleted records into a Dummy table
+```
 CREATE OR REPLACE TRIGGER DeleteTrigger
 BEFORE DELETE
 ON Emp
@@ -326,6 +338,7 @@ BEGIN
     VALUES (:OLD.eno, :OLD.ename, :OLD.designation, :OLD.salary, :OLD.dno);
 END;
 /
+```
 
 Q23.Consider the Following schema
 Boats(Bid, Name, Bcolor)
@@ -336,6 +349,7 @@ Reserves (Bid, Sid, Date of Reservation)
 
 Ans1-
 -- Create a trigger on the "Reserves" table to increment the sailor's rating
+```
 CREATE OR REPLACE TRIGGER IncrementSailorRating
 AFTER INSERT
 ON Reserves
@@ -346,10 +360,11 @@ BEGIN
     WHERE Sid = :NEW.Sid;
 END;
 /
-
+```
 
 Ans2-
 -- Create a cursor to insert sailors who reserved red boats into the "Red_Boats" table
+```
 DECLARE
     v_Sid Sailors.Sid%TYPE;
     v_Sname Sailors.Sname%TYPE;
@@ -377,7 +392,7 @@ BEGIN
     END LOOP;
 END;
 /
-
+```
 
 Q24.Consider the Following schema
 Books ( Sid, Bid, BName, BPrice )
@@ -390,6 +405,7 @@ values can be Assumable )
 
 Ans1-
 -- Create a trigger on the "Books" table to insert a record into the "Transactions" table
+```
 CREATE OR REPLACE TRIGGER InsertTransaction
 AFTER INSERT
 ON Books
@@ -399,9 +415,11 @@ BEGIN
     VALUES (:NEW.Sid, :NEW.Bid, SYSDATE, NULL, 'Issued');
 END;
 /
+```
 
 Ans2-
 -- Create a cursor to display book names issued to a specific Sid
+```
 DECLARE
     v_Sid Books.Sid%TYPE := 'XXX'; -- Replace 'XXX' with the desired Sid
     v_BName Books.BName%TYPE;
@@ -427,7 +445,7 @@ BEGIN
     CLOSE IssuedBooksCursor;
 END;
 /
-
+```
 
 Q25.Consider the Following schema
 Books ( Sid, Bid, BName, BPrice )
@@ -447,13 +465,15 @@ Fine_amount is : 30 Rs Per Day
 
 Ans1-
 -- Update the Date_Return of Sid 'xxx'
+```
 UPDATE Transactions
 SET Date_Return = SYSDATE -- Replace SYSDATE with the desired return date
 WHERE Sid = 'xxx';
-
+```
 
 Ans2-
 -- Create a cursor to calculate Fine_Amount and insert records into Return_books
+```
 DECLARE
     CURSOR FineCursor IS
         SELECT t.Sid, t.Bid, t.Date_Issue, t.Date_Return
@@ -489,7 +509,7 @@ BEGIN
     CLOSE FineCursor;
 END;
 /
-
+```
 
 Q26.Consider the Following schema
 Books ( Sid, Bid, BName, BPrice )
@@ -511,6 +531,8 @@ Fine_amount is : 30 Rs Per Day
 
 Ans1-
 -- Create a trigger on the "Books" table to insert a record into the "Transactions" table
+```
+
 CREATE OR REPLACE TRIGGER InsertTransaction
 AFTER INSERT
 ON Books
@@ -520,9 +542,11 @@ BEGIN
     VALUES (:NEW.Sid, :NEW.Bid, SYSDATE, NULL, 'Issued');
 END;
 /
+```
 
 Ans2-
 -- Create a cursor to calculate Fine_Amount and insert records into Return_books
+```
 DECLARE
     CURSOR FineCursor IS
         SELECT t.Sid, t.Bid, t.Date_Issue, t.Date_Return
@@ -558,11 +582,12 @@ BEGIN
     CLOSE FineCursor;
 END;
 /
-
+```
 
 Q27.Perform the CRUD Operations in MongoDB
 // Example: Connecting to a MongoDB database
 // Replace 'yourMongoDBConnectionURL' with your actual MongoDB connection URL
+```
 const mongoClient = new MongoClient('yourMongoDBConnectionURL', { useNewUrlParser: true });
 
 // Connecting to the database
@@ -629,26 +654,4 @@ mongoClient.connect(function(err, client) {
     // Close the database connection
     client.close();
 });
-
-
-Q28.Write the Mapreduce Program to Calculate the Total Marks Secured by each student in all Subjects.
-// Map function
-var mapFunction = function() {
-    emit(this.student, this.marks);
-};
-
-// Reduce function
-var reduceFunction = function(key, values) {
-    return Array.sum(values);
-};
-
-// Run the MapReduce operation
-db.studentMarks.mapReduce(
-    mapFunction,
-    reduceFunction,
-    {
-        out: "studentTotalMarks" // Output collection name
-    }
-);
-
-
+```
